@@ -1,29 +1,97 @@
-<div.container>
-  <header>
-    <img.logo src="./logo.svg" alt="Marko"/>
-  </header>
-  <main>
-    <p>Edit <code>./src/routes/_index/+page.marko</code> and save to reload.</p>
-    <a href="https://markojs.com/docs/getting-started">
-      Learn Marko
-    </a>
-  </main>
+<div class="container">
+  <div class="top-banner">
+    <h1>Altima Extended Vehicle Care</h1>
+    <div class="timer">
+      <CountdownTimer targetDate="2024-5-22 12:09"/>
+    </div>
+  </div>
+  <div class="content">
+    <div class="left-side">
+      <for|item, index| of=state.items>
+        <div class="item">
+          <h2>${item.title}</h2>
+          <p>${item.subtitle}</p>
+        </div>
+      </for>
+    </div>
+    <div class="right-side">
+      <form>
+        <div>
+          <label for="name">
+            姓名：
+          </label>
+          <input type="text" id="name" name="name">
+        </div>
+        <div>
+          <label for="email">
+            电子邮件：
+          </label>
+          <input type="email" id="email" name="email">
+        </div>
+        <div>
+          <label for="phone">
+            电话：
+          </label>
+          <input type="tel" id="phone" name="phone">
+        </div>
+        <button type="submit">
+          提交
+        </button>
+      </form>
+    </div>
+  </div>
 </div>
-<mouse-mask/>
 
-style {
-  .container {
-    display:flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    font-size: clamp(1em, 2vw, 2em); 
-    padding: 1em;
-    box-sizing: border-box;
-    height:100%;
-    width:100%;
-  }
-  img.logo {
-    width:12em;
+<script>
+  import CountdownTimer from "../components/CountdownTimer.marko";
+</script>
+class {
+  onCreate() {
+    this.state = {
+      items: [
+        { title: "项目 1", subtitle: "子标题 1" },
+        { title: "项目 2", subtitle: "子标题 2" },
+        { title: "项目 3", subtitle: "子标题 3" },
+      ],
+    };
   }
 }
+
+<style>
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+  }
+  .top-banner {
+    background-color: #003366;
+    color: white;
+    width: 100%;
+    padding: 20px;
+    text-align: center;
+  }
+  .content {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    margin-top: 20px;
+  }
+  .left-side {
+    flex: 1;
+    padding: 10px;
+  }
+  .right-side {
+    flex: 1;
+    padding: 10px;
+  }
+  @media (max-width: 768px) {
+    .content {
+      flex-direction: column;
+    }
+    .left-side,
+    .right-side {
+      width: 100%;
+    }
+  }
+</style>
